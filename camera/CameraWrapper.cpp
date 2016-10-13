@@ -387,14 +387,13 @@ static int camera_set_parameters(struct camera_device *device,
     if (restartPreview)
         camera_stop_preview(device);
 
-    int ret = VENDOR_CALL(device, set_parameters, tmp);
 
     if (restartPreview) {
         camera_start_preview(device);
         restartPreview = false;
     }
 
-    return ret;
+    return VENDOR_CALL(device, set_parameters, tmp);
 }
 
 static char *camera_get_parameters(struct camera_device *device)
